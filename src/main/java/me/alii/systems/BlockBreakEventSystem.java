@@ -67,10 +67,9 @@ public class BlockBreakEventSystem extends EntityEventSystem<EntityStore, BreakB
                 .noneMatch(id -> id.equalsIgnoreCase(blockId));
         if (notHasBrokenBlockId) return;
 
-        // Get the position of the block that is being broken
         Vector3i targetBlockLocation = event.getTargetBlock();
 
-        // Spawn 3 particles, particle id comes from config
+        // Spawn a particle at broken block position
         for (int i = 0; i < 3; i++) {
             ParticleUtil.spawnParticleEffect(
                     blockBreakConfig.getParticleId(),
@@ -79,9 +78,12 @@ public class BlockBreakEventSystem extends EntityEventSystem<EntityStore, BreakB
             );
         }
 
-        // Play a sound, sound id comes from config
-        SoundUtil.playSoundEvent2d(SoundEvent.getAssetMap().getIndex(blockBreakConfig.getSoundId()),
-                SoundCategory.SFX, store);
+        // Play a sound at broken block position
+        SoundUtil.playSoundEvent2d(
+                SoundEvent.getAssetMap().getIndex(blockBreakConfig.getSoundId()),
+                SoundCategory.SFX,
+                commandBuffer
+        );
 
         // Send a bold red message to player
         player.sendMessage(Message.raw("UH OHHHHH...").color(Color.RED).bold(true));

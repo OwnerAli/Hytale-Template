@@ -32,7 +32,3 @@ dependencies {
 tasks.test {
     useJUnitPlatform()
 }
-
-tasks.jar {
-    destinationDirectory.set(file("C:\\Users\\altur\\AppData\\Roaming\\Hytale\\UserData\\Mods"))
-}

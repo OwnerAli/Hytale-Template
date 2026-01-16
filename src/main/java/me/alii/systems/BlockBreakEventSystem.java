@@ -6,10 +6,16 @@ import com.hypixel.hytale.component.Ref;
 import com.hypixel.hytale.component.Store;
 import com.hypixel.hytale.component.query.Query;
 import com.hypixel.hytale.component.system.EntityEventSystem;
+import com.hypixel.hytale.math.vector.Vector3d;
+import com.hypixel.hytale.math.vector.Vector3i;
+import com.hypixel.hytale.protocol.SoundCategory;
 import com.hypixel.hytale.server.core.Message;
+import com.hypixel.hytale.server.core.asset.type.soundevent.config.SoundEvent;
 import com.hypixel.hytale.server.core.entity.entities.Player;
 import com.hypixel.hytale.server.core.event.events.ecs.BreakBlockEvent;
 import com.hypixel.hytale.server.core.universe.PlayerRef;
+import com.hypixel.hytale.server.core.universe.world.ParticleUtil;
+import com.hypixel.hytale.server.core.universe.world.SoundUtil;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import com.hypixel.hytale.server.core.util.Config;
 import me.alii.config.BlockBreakConfig;
@@ -53,7 +59,7 @@ public class BlockBreakEventSystem extends EntityEventSystem<EntityStore, BreakB
         // Not really necessary because the above is guaranteed by the getQuery Method
         if (player == null) return;
 
-        // Get Config class from Config<> Object
+        // Get Config class
         BlockBreakConfig blockBreakConfig = config.get();
 
         String blockId = event.getBlockType().getId();
@@ -61,7 +67,23 @@ public class BlockBreakEventSystem extends EntityEventSystem<EntityStore, BreakB
                 .noneMatch(id -> id.equalsIgnoreCase(blockId));
         if (notHasBrokenBlockId) return;
 
-        // Send a bold red message to player if they mine an allowed block
+        // Get the position of the block that is being broken
+        Vector3i targetBlockLocation = event.getTargetBlock();
+
+        // Spawn 3 particles, particle id comes from config
+        for (int i = 0; i < 3; i++) {
+            ParticleUtil.spawnParticleEffect(
+                    blockBreakConfig.getParticleId(),
+                    new Vector3d(targetBlockLocation.x + i, targetBlockLocation.y, targetBlockLocation.z + i),
+                    store
+            );
+        }
+
+        // Play a sound, sound id comes from config
+        SoundUtil.playSoundEvent2d(SoundEvent.getAssetMap().getIndex(blockBreakConfig.getSoundId()),
+                SoundCategory.SFX, store);
+
+        // Send a bold red message to player
         player.sendMessage(Message.raw("UH OHHHHH...").color(Color.RED).bold(true));
     }
 

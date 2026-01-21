@@ -1,1 +1,1 @@
-rootProject.name = "FirstHytalePlugin"
+rootProject.name = "FirstPlugin"

@@ -1,5 +1,6 @@
 plugins {
     id("java")
+    id("com.gradleup.shadow") version "8.3.0"
 }
 
 java {
@@ -19,7 +20,7 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 
-    implementation(files("libs/HytaleServer.jar"))
+    compileOnly(files("libs/HytaleServer.jar"))
 
     // Lombok
     compileOnly("org.projectlombok:lombok:$lombokVersion")
@@ -31,4 +32,11 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
+}
+
+tasks.jar {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    destinationDirectory.set(file("C:\\Users\\altur\\AppData\\Roaming\\Hytale\\UserData\\Mods"))
+
+    from("src/main/resources")
 }

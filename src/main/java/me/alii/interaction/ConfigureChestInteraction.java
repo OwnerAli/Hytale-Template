@@ -56,8 +56,6 @@ public class ConfigureChestInteraction extends SimpleInteraction {
                 .removeItemStackFromSlot(context.getHeldItemSlot(), requiredAmount, true, false);
         if (!itemStackSlotTransaction.succeeded()) return;
 
-        player.getInventory().getHotbar().removeItemStackFromSlot(context.getHeldItemSlot(), requiredAmount);
-
         Ref<ChunkStore> blockEntity = BlockModule.getBlockEntity(world,
                 targetBlock.x, targetBlock.y, targetBlock.z);
         Store<ChunkStore> chunkStoreStore = blockEntity.getStore();

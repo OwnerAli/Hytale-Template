@@ -9,6 +9,7 @@ import com.hypixel.hytale.server.core.Message;
 import com.hypixel.hytale.server.core.entity.InteractionContext;
 import com.hypixel.hytale.server.core.entity.entities.Player;
 import com.hypixel.hytale.server.core.inventory.ItemStack;
+import com.hypixel.hytale.server.core.inventory.transaction.ItemStackSlotTransaction;
 import com.hypixel.hytale.server.core.modules.block.BlockModule;
 import com.hypixel.hytale.server.core.modules.interaction.interaction.CooldownHandler;
 import com.hypixel.hytale.server.core.modules.interaction.interaction.config.SimpleInteraction;
@@ -49,7 +50,13 @@ public class ConfigureChestInteraction extends SimpleInteraction {
         ItemStack heldItem = context.getHeldItem();
         if (heldItem == null) return;
         if (!heldItem.getItem().getId().equalsIgnoreCase("Ore_Iron")) return;
-        player.getInventory().getHotbar().removeItemStackFromSlot(context.getHeldItemSlot(), 1);
+        int requiredAmount = 2;
+
+        ItemStackSlotTransaction itemStackSlotTransaction = player.getInventory().getHotbar()
+                .removeItemStackFromSlot(context.getHeldItemSlot(), requiredAmount, true, false);
+        if (!itemStackSlotTransaction.succeeded()) return;
+
+        player.getInventory().getHotbar().removeItemStackFromSlot(context.getHeldItemSlot(), requiredAmount);
 
         Ref<ChunkStore> blockEntity = BlockModule.getBlockEntity(world,
                 targetBlock.x, targetBlock.y, targetBlock.z);

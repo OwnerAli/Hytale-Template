@@ -16,6 +16,6 @@
   "Dependencies": {},
   "OptionalDependencies": {},
   "DisabledByDefault": false,
-  "Main": "package.mainclass",
+  "Main": "me.alii.FirstPlugin",
   "IncludesAssetPack": true
 }

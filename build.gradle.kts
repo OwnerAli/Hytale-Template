@@ -32,3 +32,10 @@ dependencies {
 tasks.test {
     useJUnitPlatform()
 }
+
+tasks.jar {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    destinationDirectory.set(file("C:\\Users\\altur\\AppData\\Roaming\\Hytale\\UserData\\Mods"))
+
+    from("src/main/resources")
+}

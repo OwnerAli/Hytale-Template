@@ -6,11 +6,21 @@ A simple template for creating [Hytale](https://hytale.com/) mods using Gradle.
 
 Follow these steps to use this template:
 
-### 1. Update Package Name
+### 1. WINDOWS
+
+- Press the Windows + R keys at the same time
+- Type %appdata% and press enter
+- Open the Hytale > install > release > package > game > latest > Server
+- Right click HytaleServer.jar and select "copy as path"
+- Open `build.gradle.kts` in your IntelliJ project and update the following:
+  - Replace the text 'your path here' with your path
+    `(e.g. implementation(files("C:\Users\altur\AppData\Roaming\Hytale\install\release\package\game\latest\Server\HytaleServer.jar")))`
+
+### 2. Update Package Name
 
 Change the package name from `me.alii` to your own package name throughout the project files.
 
-### 2. Update Manifest
+### 3. Update Manifest
 
 Edit `resources/manifest.json` with your mod information:
 
@@ -24,7 +34,7 @@ Edit `resources/manifest.json` with your mod information:
 - **ServerVersion**: Target server version (Keep as `*` for all versions) (no need to modify)
 - **IncludesAssetPack**: Set to `true` if your mod includes assets, `false` otherwise
 
-### 3. Build Your Mod
+### 4. Build Your Mod
 
 Run the following command to build your mod:
 

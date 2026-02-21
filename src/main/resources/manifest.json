@@ -1,5 +1,5 @@
 {
-  "Group": "group",
+  "Group": "GroupName",
   "Name": "ModName",
   "Version": "1.0.0",
   "Description": "Your description",
@@ -16,6 +16,6 @@
   "Dependencies": {},
   "OptionalDependencies": {},
   "DisabledByDefault": false,
-  "Main": "package.mainclass",
+  "Main": "me.alii.FirstPlugin",
   "IncludesAssetPack": true
 }

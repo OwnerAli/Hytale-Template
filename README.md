@@ -6,8 +6,9 @@ A simple template for creating [Hytale](https://hytale.com/) mods using Gradle.
 
 Follow these steps to use this template:
 
-### 1. WINDOWS
+### 1. Getting the HytaleServer.jar
 
+1.1 Windows
 - Press the Windows + R keys at the same time
 - Type %appdata% and press enter
 - Open the Hytale > install > release > package > game > latest > Server
@@ -15,6 +16,16 @@ Follow these steps to use this template:
 - Open `build.gradle.kts` in your IntelliJ project and update the following:
   - Replace the text 'your path here' with your path
     `(e.g. implementation(files("C:\Users\altur\AppData\Roaming\Hytale\install\release\package\game\latest\Server\HytaleServer.jar")))`
+
+1.2 Mac (Untested)
+- Open Finder
+- Press Cmd + Shift + G to open "Go to Folder"
+- Type ~/Library/Application Support and press enter
+- Open the Hytale > install > release > package > game > latest > Server folder
+- Right click HytaleServer.jar, hold Option, and select "Copy as Pathname"
+- Open `build.gradle.kts` in your IntelliJ project and update the following:
+  - Replace the text 'your path here' with your path
+    `(e.g. implementation(files("/Users/altur/Library/Application Support/Hytale/install/release/package/game/latest/Server/HytaleServer.jar")))`
 
 ### 2. Update Package Name
 

@@ -8,7 +8,7 @@ Follow these steps to use this template:
 
 ### 1. Getting the HytaleServer.jar
 
-1.1 Windows
+**1.1 Windows**
 - Press the Windows + R keys at the same time
 - Type %appdata% and press enter
 - Open the Hytale > install > release > package > game > latest > Server
@@ -17,7 +17,7 @@ Follow these steps to use this template:
   - Replace the text 'your path here' with your path
     `(e.g. implementation(files("C:\Users\altur\AppData\Roaming\Hytale\install\release\package\game\latest\Server\HytaleServer.jar")))`
 
-1.2 Mac (Untested)
+**1.2 Mac (Untested)**
 - Open Finder
 - Press Cmd + Shift + G to open "Go to Folder"
 - Type ~/Library/Application Support and press enter
